@@ -1,0 +1,25 @@
+--- #YAML:1.0
+name:               Mojolicious-Plugin-Mongodb
+version:            v0.02
+abstract:           Use MongoDB in Mojolicious
+author:
+    - Ben van Staveren <madcat@cpan.org>
+license:            perl
+distribution_type:  module
+configure_requires:
+    ExtUtils::MakeMaker:  0
+build_requires:
+    ExtUtils::MakeMaker:  0
+requires:
+    Mojolicious:  0
+    MongoDB:      0
+    Test::More:   0
+    version:      0
+no_index:
+    directory:
+        - t
+        - inc
+generated_by:       ExtUtils::MakeMaker version 6.56
+meta-spec:
+    url:      http://module-build.sourceforge.net/META-spec-v1.4.html
+    version:  1.4
