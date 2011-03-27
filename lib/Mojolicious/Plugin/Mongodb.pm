@@ -5,7 +5,7 @@ use version;
 use Mojo::Base 'Mojolicious::Plugin';
 use MongoDB;
 
-our $VERSION = qv(0.02);
+our $VERSION = qv(0.03);
 
 sub register {
     my $self = shift;
