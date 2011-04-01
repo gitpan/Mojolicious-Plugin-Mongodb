@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               Mojolicious-Plugin-Mongodb
-version:            v0.03
+version:            v0.04
 abstract:           Use MongoDB in Mojolicious
 author:
     - Ben van Staveren <madcat@cpan.org>
