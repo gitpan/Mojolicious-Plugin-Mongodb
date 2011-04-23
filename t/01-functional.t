@@ -6,16 +6,29 @@ use warnings;
 BEGIN { $ENV{MOJO_NO_IPV6} = $ENV{MOJO_POLL} = 1 }
 
 use Test::More;
-plan tests => 21;
+
+if(!$ENV{TEST_MONGODB}) {
+    plan skip_all => 'Please set the TEST_MONGODB variable to a MongoDB connection string (host:port) in order to test';
+} else {
+    plan tests => 21;
+}
 
 # testing code starts here
 use Mojolicious::Lite;
 use Test::Mojo;
 
+my ($host, $port) = split(/:/, $ENV{TEST_MONGODB});
+$host ||= 'localhost';
+$port ||= 27017;
+
 my $dbname = 'mojolicious_plugin_mongodb_test_' . $$;
 my $dbname2 = 'mojolicious_plugin_mongodb_test_2' . $$;
 
-plugin 'mongodb', { 'database'  =>  $dbname };
+plugin 'mongodb', { 
+    'host'      => $host,
+    'port'      => $port,
+    'database'  => $dbname 
+    };
 
 get '/defaultdb' => sub {
     my $self = shift;

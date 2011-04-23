@@ -17,10 +17,10 @@ name: Mojolicious-Plugin-Mongodb
 provides:
   Mojolicious::Plugin::Mongodb:
     file: lib/Mojolicious/Plugin/Mongodb.pm
-    version: 0.05
+    version: 1.05
 requires:
   Mojolicious: 1.21
-  MongoDB: 0.40
+  MongoDB: 0.42
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.05
+version: 1.05
