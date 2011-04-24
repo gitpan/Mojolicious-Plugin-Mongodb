@@ -1,8 +1,12 @@
-lib/Mojolicious/Plugin/Mongodb.pm
+Build.PL
 Changes
+LICENSE
 MANIFEST
+META.json
+META.yml
+Makefile.PL
 README
+dist.ini
+lib/Mojolicious/Plugin/Mongodb.pm
 t/00-load.t
 t/01-functional.t
-META.yml
-META.json

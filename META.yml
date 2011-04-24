@@ -1,26 +1,27 @@
 ---
-abstract: 'Access MongoDB easily from your Mojolicious apps'
+abstract: 'Use MongoDB in Mojolicious'
 author:
   - 'Ben van Staveren <madcat@cpan.org>'
 build_requires:
+  Module::Build: 0.3601
+  Mojolicious::Lite: 0
   Test::Mojo: 0
   Test::More: 0
 configure_requires:
-  Module::Build: 0.38
-dynamic_config: 1
-generated_by: 'Module::Build version 0.38, CPAN::Meta::Converter version 2.110930'
+  ExtUtils::MakeMaker: 6.31
+  Module::Build: 0.3601
+dynamic_config: 0
+generated_by: 'Dist::Zilla version 4.200004, CPAN::Meta::Converter version 2.110930'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: 1.4
 name: Mojolicious-Plugin-Mongodb
-provides:
-  Mojolicious::Plugin::Mongodb:
-    file: lib/Mojolicious/Plugin/Mongodb.pm
-    version: 1.05
 requires:
-  Mojolicious: 1.21
-  MongoDB: 0.42
+  Mojo::Base: 0
+  MongoDB: 0
 resources:
-  license: http://dev.perl.org/licenses/
-version: 1.05
+  bugtracker: https://github.com/benvanstaveren/Mojolicious-Plugin-Mongodb/issues
+  homepage: http://xirinet.com/projects/mojolicious-plugin-mongodb/
+  repository: git://github.com/benvanstaveren/Mojolicious-Plugin-Mongodb.git
+version: 1.06
