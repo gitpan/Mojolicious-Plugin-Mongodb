@@ -1,13 +1,117 @@
+NAME
+    Mojolicious::Plugin::Mongodb - Use MongoDB in Mojolicious
 
+VERSION
+    version 1.07
 
-This archive contains the distribution Mojolicious-Plugin-Mongodb,
-version 1.06:
+SYNOPSIS
+    Provides a few helpers to ease the use of MongoDB in your Mojolicious
+    application.
 
-  Use MongoDB in Mojolicious
+        use Mojolicious::Plugin::Mongodb
 
-This software is copyright (c) 2011 by Ben van Staveren.
+        sub startup {
+            my $self = shift;
+            $self->plugin('mongodb', { 
+                host => 'localhost',
+                port => 27017,
+                database => 'default_database',
+                helper => 'db',
+                });
+        }
 
-This is free software; you can redistribute it and/or modify it under
-the same terms as the Perl 5 programming language system itself.
+CONFIGURATION OPTIONS
+        helper      (optional)  The name to give to the easy-access helper if you want to change it's name from the default
+        no_helper   (optional)  When set to true, no helper will be installed.
+        database    (optional)  Set a default database you want to operate on
 
+    All other options passed to the plugin are used to connect to MongoDB.
+
+HELPERS/ATTRIBUTES
+  connection
+    This attribute has been deprecated in favor of mongodb_connection.
+
+  mongodb_connection
+    This plugin attribute holds the MongoDB::Connection object, use this if
+    you need to access it for some reason.
+
+  db([dbname])
+    This helper will return the database you specify, if you don't specify
+    one, then the default database is returned. If no default has been set
+    and you have not specified a database name, undef will be returned. If
+    you have renamed the helper, use that name instead of 'db' in the
+    example below :)
+
+        sub someaction {
+            my $self = shift;
+
+            # select a database yourself
+            $self->db('my_snazzy_database')->get_collection('foo')->insert({ bar => 'baz' });
+
+            # if you passed 'my_snazzy_database' during plugin load as the default, this is equivalent:
+            $self->db->get_collection('foo')->insert({ bar => 'baz' });
+
+            # if you want to be anal retentive about things in case no default exists and no database was passed:
+            $self->db and $self->db->get_collection('foo')->insert({ bar => 'baz' });
+        }
+
+  coll(collname, [dbname])
+    This helper allows easy access to a collection. If you don't pass the
+    dbname argument, it will return the given collection inside the default
+    database. If no default database exists, it will return undef.
+
+        sub someaction {
+            my $self = shift;
+
+            # get the 'foo' collection in the default database
+            my $collection = $self->coll('foo');
+
+            # get the 'bar' collection in the 'baz' database
+            my $collection = $self->coll('bar', 'baz');
+        }
+
+AUTHOR
+    Ben van Staveren, "<madcat at cpan.org>"
+
+BUGS/CONTRIBUTING
+    Please report any bugs through the web interface at
+    <http://github.com/benvanstaveren/mojolicious-plugin-mongodb/issues> If
+    you want to contribute changes or otherwise involve yourself in
+    development, feel free to fork the Git repository from
+    <https://github.com/benvanstaveren/mojolicious-plugin-mongodb/>.
+
+SUPPORT
+    You can find documentation for this module with the perldoc command.
+
+        perldoc Mojolicious::Plugin::Mongodb
+
+    You can also look for information at:
+
+    *   AnnoCPAN: Annotated CPAN documentation
+
+        <http://annocpan.org/dist/Mojolicious-Plugin-Mongodb>
+
+    *   CPAN Ratings
+
+        <http://cpanratings.perl.org/d/Mojolicious-Plugin-Mongodb>
+
+    *   Search CPAN
+
+        <http://search.cpan.org/dist/Mojolicious-Plugin-Mongodb/>
+
+ACKNOWLEDGEMENTS
+    Based on Mojolicious::Plugin::Database because I don't want to leave the
+    MongoDB crowd in the cold.
+
+    Thanks to Henk van Oers for pointing out a few errors in the
+    documentation, and letting me know I should really fix the MANIFEST
+
+LICENSE AND COPYRIGHT
+    Copyright 2011 Ben van Staveren.
+
+    This program is free software; you can redistribute it and/or modify it
+    under the terms of either: the GNU General Public License as published
+    by the Free Software Foundation; or the Artistic License.
+
+    See http://dev.perl.org/licenses/ for more information.
 

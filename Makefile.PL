@@ -12,14 +12,15 @@ my %WriteMakefileArgs = (
   'ABSTRACT' => 'Use MongoDB in Mojolicious',
   'AUTHOR' => 'Ben van Staveren <madcat@cpan.org>',
   'BUILD_REQUIRES' => {
-    'Module::Build' => '0.3601',
+    'Module::Build' => '0.38',
     'Mojolicious::Lite' => '0',
     'Test::Mojo' => '0',
-    'Test::More' => '0'
+    'Test::More' => '0',
+    'Try::Tiny' => '0'
   },
   'CONFIGURE_REQUIRES' => {
     'ExtUtils::MakeMaker' => '6.31',
-    'Module::Build' => '0.3601'
+    'Module::Build' => '0.38'
   },
   'DISTNAME' => 'Mojolicious-Plugin-Mongodb',
   'EXE_FILES' => [],
@@ -29,7 +30,7 @@ my %WriteMakefileArgs = (
     'Mojo::Base' => '0',
     'MongoDB' => '0'
   },
-  'VERSION' => '1.06',
+  'VERSION' => '1.07',
   'test' => {
     'TESTS' => 't/*.t'
   }

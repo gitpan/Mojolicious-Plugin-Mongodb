@@ -3,13 +3,14 @@ abstract: 'Use MongoDB in Mojolicious'
 author:
   - 'Ben van Staveren <madcat@cpan.org>'
 build_requires:
-  Module::Build: 0.3601
+  Module::Build: 0.38
   Mojolicious::Lite: 0
   Test::Mojo: 0
   Test::More: 0
+  Try::Tiny: 0
 configure_requires:
   ExtUtils::MakeMaker: 6.31
-  Module::Build: 0.3601
+  Module::Build: 0.38
 dynamic_config: 0
 generated_by: 'Dist::Zilla version 4.200004, CPAN::Meta::Converter version 2.110930'
 license: perl
@@ -22,6 +23,6 @@ requires:
   MongoDB: 0
 resources:
   bugtracker: https://github.com/benvanstaveren/Mojolicious-Plugin-Mongodb/issues
-  homepage: http://xirinet.com/projects/mojolicious-plugin-mongodb/
+  homepage: http://search.cpan.org/dist/Mojolicious-Plugin-Mongodb/
   repository: git://github.com/benvanstaveren/Mojolicious-Plugin-Mongodb.git
-version: 1.06
+version: 1.07

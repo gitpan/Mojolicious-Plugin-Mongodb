@@ -16,13 +16,13 @@
    "prereqs" : {
       "build" : {
          "requires" : {
-            "Module::Build" : "0.3601"
+            "Module::Build" : "0.38"
          }
       },
       "configure" : {
          "requires" : {
             "ExtUtils::MakeMaker" : "6.31",
-            "Module::Build" : "0.3601"
+            "Module::Build" : "0.38"
          }
       },
       "runtime" : {
@@ -35,7 +35,8 @@
          "requires" : {
             "Mojolicious::Lite" : 0,
             "Test::Mojo" : 0,
-            "Test::More" : 0
+            "Test::More" : 0,
+            "Try::Tiny" : 0
          }
       }
    },
@@ -44,13 +45,13 @@
       "bugtracker" : {
          "web" : "https://github.com/benvanstaveren/Mojolicious-Plugin-Mongodb/issues"
       },
-      "homepage" : "http://xirinet.com/projects/mojolicious-plugin-mongodb/",
+      "homepage" : "http://search.cpan.org/dist/Mojolicious-Plugin-Mongodb/",
       "repository" : {
          "type" : "git",
          "url" : "git://github.com/benvanstaveren/Mojolicious-Plugin-Mongodb.git",
          "web" : "https://github.com/benvanstaveren/Mojolicious-Plugin-Mongodb"
       }
    },
-   "version" : "1.06"
+   "version" : "1.07"
 }
 

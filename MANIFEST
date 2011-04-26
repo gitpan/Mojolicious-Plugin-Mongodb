@@ -9,4 +9,7 @@ README
 dist.ini
 lib/Mojolicious/Plugin/Mongodb.pm
 t/00-load.t
-t/01-functional.t
+t/01-functional-default.t
+t/02-functional-helper.t
+t/03-functional-nohelper.t
+t/release-cpan-changes.t
