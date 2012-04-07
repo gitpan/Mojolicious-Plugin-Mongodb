@@ -7,12 +7,11 @@ build_requires:
   Mojolicious::Lite: 0
   Test::Mojo: 0
   Test::More: 0
-  Try::Tiny: 0
 configure_requires:
-  ExtUtils::MakeMaker: 6.31
+  ExtUtils::MakeMaker: 6.30
   Module::Build: 0.38
 dynamic_config: 0
-generated_by: 'Dist::Zilla version 4.200004, CPAN::Meta::Converter version 2.110930'
+generated_by: 'Dist::Zilla version 4.300007, CPAN::Meta::Converter version 2.113640'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -21,8 +20,11 @@ name: Mojolicious-Plugin-Mongodb
 requires:
   Mojo::Base: 0
   MongoDB: 0
+  Tie::IxHash: 0
+  strict: 0
+  warnings: 0
 resources:
   bugtracker: https://github.com/benvanstaveren/Mojolicious-Plugin-Mongodb/issues
   homepage: http://search.cpan.org/dist/Mojolicious-Plugin-Mongodb/
   repository: git://github.com/benvanstaveren/Mojolicious-Plugin-Mongodb.git
-version: 1.07
+version: 1.08

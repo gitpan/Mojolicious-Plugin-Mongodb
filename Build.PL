@@ -6,32 +6,34 @@ use Module::Build 0.38;
 
 
 my %module_build_args = (
-  'build_requires' => {
-    'Module::Build' => '0.38',
-    'Mojolicious::Lite' => '0',
-    'Test::Mojo' => '0',
-    'Test::More' => '0',
-    'Try::Tiny' => '0'
+  "build_requires" => {
+    "Module::Build" => "0.38",
+    "Mojolicious::Lite" => 0,
+    "Test::Mojo" => 0,
+    "Test::More" => 0
   },
-  'configure_requires' => {
-    'ExtUtils::MakeMaker' => '6.31',
-    'Module::Build' => '0.38'
+  "configure_requires" => {
+    "ExtUtils::MakeMaker" => "6.30",
+    "Module::Build" => "0.38"
   },
-  'dist_abstract' => 'Use MongoDB in Mojolicious',
-  'dist_author' => [
-    'Ben van Staveren <madcat@cpan.org>'
+  "dist_abstract" => "Use MongoDB in Mojolicious",
+  "dist_author" => [
+    "Ben van Staveren <madcat\@cpan.org>"
   ],
-  'dist_name' => 'Mojolicious-Plugin-Mongodb',
-  'dist_version' => '1.07',
-  'license' => 'perl',
-  'module_name' => 'Mojolicious::Plugin::Mongodb',
-  'recommends' => {},
-  'recursive_test_files' => 1,
-  'requires' => {
-    'Mojo::Base' => '0',
-    'MongoDB' => '0'
+  "dist_name" => "Mojolicious-Plugin-Mongodb",
+  "dist_version" => "1.08",
+  "license" => "perl",
+  "module_name" => "Mojolicious::Plugin::Mongodb",
+  "recommends" => {},
+  "recursive_test_files" => 1,
+  "requires" => {
+    "Mojo::Base" => 0,
+    "MongoDB" => 0,
+    "Tie::IxHash" => 0,
+    "strict" => 0,
+    "warnings" => 0
   },
-  'script_files' => []
+  "script_files" => []
 );
 
 

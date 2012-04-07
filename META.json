@@ -4,7 +4,7 @@
       "Ben van Staveren <madcat@cpan.org>"
    ],
    "dynamic_config" : 0,
-   "generated_by" : "Dist::Zilla version 4.200004, CPAN::Meta::Converter version 2.110930",
+   "generated_by" : "Dist::Zilla version 4.300007, CPAN::Meta::Converter version 2.113640",
    "license" : [
       "perl_5"
    ],
@@ -21,22 +21,24 @@
       },
       "configure" : {
          "requires" : {
-            "ExtUtils::MakeMaker" : "6.31",
+            "ExtUtils::MakeMaker" : "6.30",
             "Module::Build" : "0.38"
          }
       },
       "runtime" : {
          "requires" : {
             "Mojo::Base" : 0,
-            "MongoDB" : 0
+            "MongoDB" : 0,
+            "Tie::IxHash" : 0,
+            "strict" : 0,
+            "warnings" : 0
          }
       },
       "test" : {
          "requires" : {
             "Mojolicious::Lite" : 0,
             "Test::Mojo" : 0,
-            "Test::More" : 0,
-            "Try::Tiny" : 0
+            "Test::More" : 0
          }
       }
    },
@@ -52,6 +54,6 @@
          "web" : "https://github.com/benvanstaveren/Mojolicious-Plugin-Mongodb"
       }
    },
-   "version" : "1.07"
+   "version" : "1.08"
 }
 

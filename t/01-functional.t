@@ -27,13 +27,9 @@ my $dbname2 = 'mojolicious_plugin_mongodb_test_2' . $$;
 plugin 'mongodb', { 
     'host'      => $host,
     'port'      => $port,
-    'database'  => $dbname 
+    'database'  => $dbname,
+    'helper'    => 'foo',
     };
-
-get '/defaultdb' => sub {
-    my $self = shift;
-    $self->render(text => $self->app->defaultdb );
-};
 
 get '/connection' => sub {
     my $self = shift;
@@ -42,18 +38,23 @@ get '/connection' => sub {
 
 get '/getdb' => sub {
     my $self = shift;
-    $self->render(text => $self->db->name);
+    $self->render(text => $self->foo($dbname)->name);
 };
 
 get '/getotherdb' => sub {
     my $self = shift;
-    $self->render(text => $self->db($dbname2)->name);
+    $self->render(text => $self->foo($dbname2)->name);
+};
+
+get '/lastdb' => sub {
+    my $self = shift;
+    $self->render(text => $self->foo->name);
 };
 
 get '/db-get-collection/:cname' => sub {
     my $self = shift;
     my $cname = $self->stash('cname');
-    $self->render(text => $self->db->get_collection($cname)->name);
+    $self->render(text => $self->foo->get_collection($cname)->name);
 };
 
 get '/db-coll/:cname' => sub {
@@ -70,10 +71,10 @@ get '/db-coll-full/:cname' => sub {
 
 my $t = Test::Mojo->new;
 
-$t->get_ok('/defaultdb')->status_is(200)->content_is($dbname);
 $t->get_ok('/connection')->status_is(200)->content_is('MongoDB::Connection');
 $t->get_ok('/getdb')->status_is(200)->content_is($dbname);
 $t->get_ok('/getotherdb')->status_is(200)->content_is($dbname2);
+$t->get_ok('/lastdb')->status_is(200)->content_is($dbname2);
 $t->get_ok('/db-get-collection/test1')->status_is(200)->content_is('test1');
 $t->get_ok('/db-coll/test1')->status_is(200)->content_is('test1');
 $t->get_ok('/db-coll-full/test1')->status_is(200)->content_is("$dbname2.test1");
