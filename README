@@ -2,7 +2,7 @@ NAME
     Mojolicious::Plugin::Mongodb - Use MongoDB in Mojolicious
 
 VERSION
-    version 1.09
+    version 1.10
 
 SYNOPSIS
     Provides a few helpers to ease the use of MongoDB in your Mojolicious
@@ -95,13 +95,13 @@ MONGODB PATCHING
         $coll->group(...);
         $coll->map_reduce(...);
 
-  find_and_modify(%options)
+  find_and_modify(\%options)
         Executes a 'findAndModify' command on the collection. See L<http://www.mongodb.org/display/DOCS/findAndModify+Command> for supported options. It will return the raw result from MongoDB.
 
-  map_reduce (%options)
+  map_reduce (\%options)
         Executes a 'mapReduce' operation on the collection. All options from L<http://www.mongodb.org/display/DOCS/MapReduce> are supported. It will return the raw result from MongoDB.
 
-  group (%options)
+  group (\%options)
         Executes a 'group' operation on the collection. All options from L<http://www.mongodb.org/display/DOCS/Aggregation#Aggregation-Group> are supported. It will return the raw result from MongoDB.
 
 AUTHOR

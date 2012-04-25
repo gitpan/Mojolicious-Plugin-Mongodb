@@ -28,4 +28,4 @@ resources:
   bugtracker: https://github.com/benvanstaveren/Mojolicious-Plugin-Mongodb/issues
   homepage: http://search.cpan.org/dist/Mojolicious-Plugin-Mongodb/
   repository: git://github.com/benvanstaveren/Mojolicious-Plugin-Mongodb.git
-version: 1.09
+version: 1.10

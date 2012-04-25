@@ -2,7 +2,7 @@ use warnings;
 use strict;
 package Mojolicious::Plugin::Mongodb;
 {
-  $Mojolicious::Plugin::Mongodb::VERSION = '1.09';
+  $Mojolicious::Plugin::Mongodb::VERSION = '1.10';
 }
 use Mojo::Base 'Mojolicious::Plugin';
 use MongoDB;
@@ -29,45 +29,44 @@ sub register {
 
     $app->helper('coll' => sub { return shift->app->_mongodb->coll(@_) });
 
-
     if(defined($conf->{patch_mongodb}) && $conf->{patch_mongodb} == 1) {
         use Moose::Util qw/find_meta/;
         if(my $meta = find_meta('MongoDB::Collection')) {
             $meta->make_mutable;
             $meta->add_method('group' => Moose::Meta::Method->wrap(sub {
                 my $self = shift;
-                my %opts = (@_);
+                my $opts = shift;
 
                 # fix the shit up
-                $opts{'ns'} = $self->name,
-                $opts{'$reduce'} = delete($opts{'reduce'}) if($opts{'reduce'});
-                $opts{'$keyf'} = delete($opts{'keyf'}) if($opts{'keyf'});
-                $opts{'$finalize'} = delete($opts{'finalize'}) if($opts{'finalize'});
+                $opts->{'ns'} = $self->name,
+                $opts->{'$reduce'} = delete($opts->{'reduce'}) if($opts->{'reduce'});
+                $opts->{'$keyf'} = delete($opts->{'keyf'}) if($opts->{'keyf'});
+                $opts->{'$finalize'} = delete($opts->{'finalize'}) if($opts->{'finalize'});
 
                 my $cmd = Tie::IxHash->new(
-                    "group" => \%opts
+                    "group" => $opts
                 );
                 return $self->_database->run_command($cmd);
             }, name => 'group', package_name => 'MongoDB::Collection'));
 
             $meta->add_method('find_and_modify' => Moose::Meta::Method->wrap(sub {
                 my $self = shift;
-                my %opts = (@_);
+                my $opts = shift;
 
                 my $cmd = Tie::IxHash->new(
                     "findAndModify" => $self->name,
-                    %opts,
+                    %$opts,
                     );
                 return $self->_database->run_command($cmd);
             }, name => 'find_and_modify', package_name => 'MongoDB::Collection'));
 
             $meta->add_method('map_reduce' => Moose::Meta::Method->wrap(sub {
                 my $self = shift;
-                my %opts = (@_);
+                my $opts = shift;
 
                 my $cmd = Tie::IxHash->new(
                     "mapreduce" => $self->name,
-                    %opts,
+                    %$opts,
                     );
                 return $self->_database->run_command($cmd);
             }, name => 'map_reduce', package_name => 'MongoDB::Collection'));
@@ -75,7 +74,7 @@ sub register {
             $meta->make_immutable;
         }
     } else {
-        for my $helpername(qw/find_and_modify map_reduce/) {
+        for my $helpername(qw/find_and_modify map_reduce group/) {
             $app->helper($helpername => sub { return shift->app->_mongodb->$helpername(@_) });
         }
     }
@@ -83,7 +82,7 @@ sub register {
 
 package Mojolicious::Plugin::Mongodb::Connection;
 {
-  $Mojolicious::Plugin::Mongodb::Connection::VERSION = '1.09';
+  $Mojolicious::Plugin::Mongodb::Connection::VERSION = '1.10';
 }
 use Mojo::Base -base;
 use Tie::IxHash;
@@ -117,13 +116,11 @@ sub coll {
 sub find_and_modify {
     my $self = shift;
     my $coll = shift;
-    my %opts = (@_);
-    my $q    = delete($opts{query});
-    my $u    = delete($opts{update});
+    my $opts = shift;
 
     my $cmd = Tie::IxHash->new(
         "findAndModify" => $coll,
-        %opts,
+        %$opts,
         );
 
     return $self->db->run_command($cmd);
@@ -132,12 +129,12 @@ sub find_and_modify {
 sub map_reduce {
     my $self = shift;
     my $collection = shift;
-    my %options = (@_);
-    my $as_cursor = delete($options{'as_cursor'});
+    my $opts = shift;
+    my $as_cursor = delete($opts->{'as_cursor'});
 
     my $cmd = Tie::IxHash->new( 
         "mapreduce" => $collection,
-        %options
+        %$opts
     );
 
     my $res = $self->db->run_command($cmd);
@@ -149,6 +146,19 @@ sub map_reduce {
     }
 }
 
+sub group {
+    my $self = shift;
+    my $collection = shift;
+    my $opts = shift;
+
+    $opts->{ns} = $collection;
+
+    my $cmd = Tie::IxHash->new( 
+        "group" => $opts
+    );
+
+    return $self->db->run_command($cmd);
+}
 
 1; 
 __END__
@@ -158,7 +168,7 @@ Mojolicious::Plugin::Mongodb - Use MongoDB in Mojolicious
 
 =head1 VERSION
 
-version 1.09
+version 1.10
 
 =head1 SYNOPSIS
 
@@ -240,15 +250,15 @@ You can pass an option that will use some Moose tricks to add a few often used (
     $coll->group(...);
     $coll->map_reduce(...);
 
-=head2 find_and_modify(%options)
+=head2 find_and_modify(\%options)
 
     Executes a 'findAndModify' command on the collection. See L<http://www.mongodb.org/display/DOCS/findAndModify+Command> for supported options. It will return the raw result from MongoDB.
     
-=head2 map_reduce (%options)
+=head2 map_reduce (\%options)
 
     Executes a 'mapReduce' operation on the collection. All options from L<http://www.mongodb.org/display/DOCS/MapReduce> are supported. It will return the raw result from MongoDB.
 
-=head2 group (%options)
+=head2 group (\%options)
 
     Executes a 'group' operation on the collection. All options from L<http://www.mongodb.org/display/DOCS/Aggregation#Aggregation-Group> are supported. It will return the raw result from MongoDB.
 
