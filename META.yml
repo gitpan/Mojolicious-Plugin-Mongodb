@@ -20,6 +20,7 @@ name: Mojolicious-Plugin-Mongodb
 requires:
   Mojo::Base: 0
   MongoDB: 0
+  Moose::Util: 0
   Tie::IxHash: 0
   strict: 0
   warnings: 0
@@ -27,4 +28,4 @@ resources:
   bugtracker: https://github.com/benvanstaveren/Mojolicious-Plugin-Mongodb/issues
   homepage: http://search.cpan.org/dist/Mojolicious-Plugin-Mongodb/
   repository: git://github.com/benvanstaveren/Mojolicious-Plugin-Mongodb.git
-version: 1.08
+version: 1.09

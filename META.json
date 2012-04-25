@@ -29,6 +29,7 @@
          "requires" : {
             "Mojo::Base" : 0,
             "MongoDB" : 0,
+            "Moose::Util" : 0,
             "Tie::IxHash" : 0,
             "strict" : 0,
             "warnings" : 0
@@ -54,6 +55,6 @@
          "web" : "https://github.com/benvanstaveren/Mojolicious-Plugin-Mongodb"
       }
    },
-   "version" : "1.08"
+   "version" : "1.09"
 }
 
