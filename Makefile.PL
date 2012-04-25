@@ -28,12 +28,13 @@ my %WriteMakefileArgs = (
   "PREREQ_PM" => {
     "Mojo::Base" => 0,
     "MongoDB" => 0,
+    "MongoDB::Collection" => 0,
     "Moose::Util" => 0,
     "Tie::IxHash" => 0,
     "strict" => 0,
     "warnings" => 0
   },
-  "VERSION" => "1.11",
+  "VERSION" => "1.12",
   "test" => {
     "TESTS" => "t/*.t"
   }

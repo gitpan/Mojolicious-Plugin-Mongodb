@@ -1,5 +1,14 @@
 Revision history for Mojolicious-Plugin-Mongodb
 
+1.12      2012-04-26 05:50:28 Asia/Jakarta
+    So sorry, but doing a findOne on a collection doesn't work because group is
+    in fact a command that gets run, but the MongoDB docs about it's proper
+    usage are vague, and 
+
+        db.$cmd.findOne() 
+
+    is apparently equivalent to a runCommand, but not quite.
+
 1.11      2012-04-26 05:33:58 Asia/Jakarta
     Group as a runCommand apparently does not work the way you think it does,
     and actually is a parameter to findOne() so that's bene fixed too. Hope

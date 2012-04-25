@@ -21,7 +21,7 @@ my %module_build_args = (
     "Ben van Staveren <madcat\@cpan.org>"
   ],
   "dist_name" => "Mojolicious-Plugin-Mongodb",
-  "dist_version" => "1.11",
+  "dist_version" => "1.12",
   "license" => "perl",
   "module_name" => "Mojolicious::Plugin::Mongodb",
   "recommends" => {},
@@ -29,6 +29,7 @@ my %module_build_args = (
   "requires" => {
     "Mojo::Base" => 0,
     "MongoDB" => 0,
+    "MongoDB::Collection" => 0,
     "Moose::Util" => 0,
     "Tie::IxHash" => 0,
     "strict" => 0,

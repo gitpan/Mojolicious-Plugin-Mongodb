@@ -2,7 +2,7 @@ NAME
     Mojolicious::Plugin::Mongodb - Use MongoDB in Mojolicious
 
 VERSION
-    version 1.11
+    version 1.12
 
 SYNOPSIS
     Provides a few helpers to ease the use of MongoDB in your Mojolicious
