@@ -2,7 +2,7 @@ NAME
     Mojolicious::Plugin::Mongodb - Use MongoDB in Mojolicious
 
 VERSION
-    version 1.12
+    version 1.13
 
 SYNOPSIS
     Provides a few helpers to ease the use of MongoDB in your Mojolicious
@@ -67,6 +67,23 @@ HELPERS/ATTRIBUTES
             $self->db('baz');
             my $collection = $self->coll('bar');
         }
+
+  model($db_and_collection)
+    This helper functions as a combination of the above, or if you just want
+    to use a different notation. An example usage would be:
+
+        # get the number of items in collection 'bar' in database 'foo'
+        my $count = $self->model('foo.bar')->count();
+
+        # if you use dotted collection names, no problem!
+        my $system_js_count = $self->model('foo.system.js')->count();
+
+        # if you pass it a regular string without dots, this helper will act like C<coll>.
+        my $bar_collection = $self->model('bar');
+
+    This helper will set the last selected db to whatever was passed as the
+    database part of the argument, so try not to mix and match "model" with
+    "coll" and "db".
 
   find_and_modify($collname, \%options)
     This helper executes a 'findAndModify' operation on the given
