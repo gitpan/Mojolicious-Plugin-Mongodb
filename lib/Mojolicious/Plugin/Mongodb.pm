@@ -2,7 +2,7 @@ use warnings;
 use strict;
 package Mojolicious::Plugin::Mongodb;
 {
-  $Mojolicious::Plugin::Mongodb::VERSION = '1.13';
+  $Mojolicious::Plugin::Mongodb::VERSION = '1.14';
 }
 use Mojo::Base 'Mojolicious::Plugin';
 use MongoDB;
@@ -94,7 +94,7 @@ sub register {
 
 package Mojolicious::Plugin::Mongodb::Connection;
 {
-  $Mojolicious::Plugin::Mongodb::Connection::VERSION = '1.13';
+  $Mojolicious::Plugin::Mongodb::Connection::VERSION = '1.14';
 }
 use Mojo::Base -base;
 use Tie::IxHash;
@@ -179,7 +179,7 @@ Mojolicious::Plugin::Mongodb - Use MongoDB in Mojolicious
 
 =head1 VERSION
 
-version 1.13
+version 1.14
 
 =head1 SYNOPSIS
 
