@@ -2,7 +2,7 @@ NAME
     Mojolicious::Plugin::Mongodb - Use MongoDB in Mojolicious
 
 VERSION
-    version 1.14
+    version 1.15
 
 SYNOPSIS
     Provides a few helpers to ease the use of MongoDB in your Mojolicious
@@ -23,8 +23,9 @@ CONFIGURATION OPTIONS
         helper          (optional)  The name to give to the easy-access helper if you want 
                                     to change it's name from the default 'db' 
 
-        patch_mongodb   (optional)  When set to true, will do some Moose tricks on MongoDB::Collection 
-                                    to force the group, find_and_modify and map_reduce methods in there
+        no_db           (optional)  Don't install the 'db' helper
+        no_model        (optional)  Don't install the 'model' helper
+        no_coll         (optional)  Don't install the 'coll' helper
 
     All other options passed to the plugin are used to connect to MongoDB.
 
@@ -100,27 +101,6 @@ HELPERS/ATTRIBUTES
     from the MongoDB driver, or if you have passed the 'as_cursor' option,
     it will return a MongoDB::Cursor object for your result collection.
 
-MONGODB PATCHING
-    You can pass an option that will use some Moose tricks to add a few
-    often used (and for some reason inexplicably not included) commands into
-    MongoDB::Collection. You can then use them as follows:
-
-        my $db = $self->db('foo');
-        my $coll = $db->get_collection('baz');
-
-        $coll->find_and_modify(...);
-        $coll->group(...);
-        $coll->map_reduce(...);
-
-  find_and_modify(\%options)
-        Executes a 'findAndModify' command on the collection. See L<http://www.mongodb.org/display/DOCS/findAndModify+Command> for supported options. It will return the raw result from MongoDB.
-
-  map_reduce (\%options)
-        Executes a 'mapReduce' operation on the collection. All options from L<http://www.mongodb.org/display/DOCS/MapReduce> are supported. It will return the raw result from MongoDB.
-
-  group (\%options)
-        Executes a 'group' operation on the collection. All options from L<http://www.mongodb.org/display/DOCS/Aggregation#Aggregation-Group> are supported. It will return the raw result from MongoDB.
-
 AUTHOR
     Ben van Staveren, "<madcat at cpan.org>"
 
@@ -158,7 +138,7 @@ ACKNOWLEDGEMENTS
     documentation, and letting me know I should really fix the MANIFEST
 
 LICENSE AND COPYRIGHT
-    Copyright 2011, 2012 Ben van Staveren.
+    Copyright 2011, 2012, 2013 Ben van Staveren.
 
     This program is free software; you can redistribute it and/or modify it
     under the terms of either: the GNU General Public License as published
