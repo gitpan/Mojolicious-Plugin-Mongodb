@@ -1,5 +1,8 @@
 Revision history for Mojolicious-Plugin-Mongodb
 
+1.16      2014-05-21 13:39:19WIT+0700 Asia/Jakarta
+    Fixes to the no_OPTION methods
+
 1.15      2013-07-01 18:07:22 Asia/Jakarta
     Added the 'no_db', 'no_coll' and 'no_model' configuration options.
     Removed the patch_mongodb option because the newer drivers have some

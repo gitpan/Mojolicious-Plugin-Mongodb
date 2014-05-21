@@ -2,7 +2,7 @@ NAME
     Mojolicious::Plugin::Mongodb - Use MongoDB in Mojolicious
 
 VERSION
-    version 1.15
+    version 1.16
 
 SYNOPSIS
     Provides a few helpers to ease the use of MongoDB in your Mojolicious
@@ -23,9 +23,12 @@ CONFIGURATION OPTIONS
         helper          (optional)  The name to give to the easy-access helper if you want 
                                     to change it's name from the default 'db' 
 
-        no_db           (optional)  Don't install the 'db' helper
-        no_model        (optional)  Don't install the 'model' helper
-        no_coll         (optional)  Don't install the 'coll' helper
+        no_db               (optional)  Don't install the 'db' helper
+        no_model            (optional)  Don't install the 'model' helper
+        no_coll             (optional)  Don't install the 'coll' helper
+        no_find_and_modify  (optional)  Don't install the 'find_and_modify' helper
+        no_map_reduce       (optional)  Don't install the 'map_reduce' helper
+        no_group            (optional)  Don't install the 'group' helper
 
     All other options passed to the plugin are used to connect to MongoDB.
 
